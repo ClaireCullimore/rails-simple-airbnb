@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>All Flats</h1>
+
+<div class="input-group">
+  <input type="search" name="query" class="form-control rounded" placeholder="Search" aria-label="Search"
+    aria-describedby="search-addon" value="<%= params[:query] %>"/>
+  <button type="button" class="btn btn-outline-primary">search</button>
+</div>
+
+  <div>
+   <% @flats.each do |f|%>
+     <div>
+      <h4><%= f.name %></h4>
+      <p><%= f.address %></h4>
+      </br>
+      <h4><%= f.price_per_night %></h4>
+      <h4><%= f.number_of_guests %></h4>
+      <div class="flat-card-actions">
+              <%= link_to 'More info', flat_path(f) %>
+              <%= link_to 'Edit', edit_flat_path(f), class: 'ml-3 text-warning' %>
+              <%= link_to "Remove", flat_path(f),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" },
+                  class: 'ml-3 text-danger'
+              %>
+        </div>
+    </div>
+    <% end %>
+  </div>
+</div>
